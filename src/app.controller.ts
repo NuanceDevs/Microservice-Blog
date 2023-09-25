@@ -1,12 +1,13 @@
-import { Controller, Get } from '@nestjs/common';
-import { AppService } from './app.service';
+import { Controller } from '@nestjs/common';
+import { MessagePattern } from '@nestjs/microservices';
+import { of } from 'rxjs';
+import { delay } from 'rxjs/operators';
 
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) {}
-
-  @Get()
-  getHello(): string {
-    return this.appService.getHello();
+  @MessagePattern({ cmd: 'ping' })
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  ping(_: any) {
+    return of('pong').pipe(delay(1000));
   }
 }

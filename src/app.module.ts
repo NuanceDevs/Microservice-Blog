@@ -2,6 +2,8 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { BlogModule } from './blog/blog.module'; // Import your BlogModule from the correct path
 import { BlogEntity } from './blog/blog.entity';
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
 
 @Module({
   imports: [
@@ -18,5 +20,7 @@ import { BlogEntity } from './blog/blog.entity';
     }),
     BlogModule, // Include your BlogModule here
   ],
+  controllers: [AppController],
+  providers: [AppService],
 })
 export class AppModule {}
