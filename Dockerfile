@@ -1,4 +1,4 @@
-FROM node:16
+FROM node:alpine
 LABEL name="blog-microservice"
 
 WORKDIR /app
