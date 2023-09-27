@@ -1,25 +1,24 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { BlogModule } from './blog/blog.module'; // Import your BlogModule from the correct path
 import { BlogEntity } from './blog/blog.entity';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 
 @Module({
-  imports: [
-    TypeOrmModule.forRoot({
-      type: 'postgres',
-      host: 'localhost',
-      port: 5000, // The default port for PostgreSQL is usually 5432, not 5000
-      username: 'root',
-      password: 'root',
-      database: 'test',
-      entities: [BlogEntity], // You should specify your entities here
-      synchronize: true, // This should be used with caution in production
-      autoLoadEntities: true,
-    }),
-    BlogModule, // Include your BlogModule here
-  ],
+  // imports: [
+  //   TypeOrmModule.forRoot({
+  //     type: 'postgres',
+  //     host: 'db',
+  //     port: 5432,
+  //     username: 'postgres',
+  //     password: 'postgres',
+  //     database: 'postgres',
+  //     entities: [BlogEntity],
+  //     synchronize: true, // This should be used with caution in production
+  //     autoLoadEntities: true,
+  //   }),
+  //   TypeOrmModule.forFeature([BlogEntity]), // Register your repository here
+  // ],
   controllers: [AppController],
   providers: [AppService],
 })
