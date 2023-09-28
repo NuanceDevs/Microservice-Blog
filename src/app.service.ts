@@ -1,32 +1,26 @@
 import { Injectable } from '@nestjs/common';
 
 import { BlogDto } from './blog/dto/blog.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { BlogEntity } from './blog/blog.entity';
 
 @Injectable()
 export class AppService {
-  // constructor(
-  //   @InjectRepository(BlogDto)
-  //   private readonly blogRepository: Repository<BlogDto>,
-  // ) {}
+  constructor(
+    @InjectRepository(BlogEntity)
+    private readonly blogRepository: Repository<BlogEntity>,
+  ) {}
 
   getHello(): string {
     return 'Hello World!';
   }
 
   async getAllBlogs(): Promise<BlogDto[]> {
-    return [
-      {
-        id: 1,
-        title: 'Blog 1',
-        summary: 'Blog 1 summary',
-      },
-      {
-        id: 2,
-        title: 'Blog 2',
-        summary: 'Blog 2 summary',
-      },
-    ];
+    return await this.blogRepository.find();
   }
+
+  async createPost(): Promise<void> {}
 
   async getBlogById(id: number): Promise<BlogDto> {
     return {

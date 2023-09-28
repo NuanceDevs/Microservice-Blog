@@ -6,16 +6,17 @@ import { BlogDto } from './blog/dto/blog.dto';
 @Controller()
 export class AppController {
   constructor(private readonly appService: AppService) {}
-  // @MessagePattern({ cmd: 'ping' })
-  // // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  // ping() {
-  //   return of('pongkkk').pipe(delay(1000));
-  // }
 
   @MessagePattern({ cmd: 'getAllBlogs' })
   async getAllBlogs(): Promise<BlogDto[]> {
     console.log('getAllBlogs message received');
     return this.appService.getAllBlogs();
+  }
+
+  @MessagePattern({ cmd: 'createPost' })
+  async createBlog(): Promise<void> {
+    console.log('createBlog message received');
+    this.appService.createPost();
   }
 
   @MessagePattern({ cmd: 'getBlogById' })

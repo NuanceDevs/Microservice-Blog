@@ -5,20 +5,19 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 
 @Module({
-  // imports: [
-  //   TypeOrmModule.forRoot({
-  //     type: 'postgres',
-  //     host: 'db',
-  //     port: 5432,
-  //     username: 'postgres',
-  //     password: 'postgres',
-  //     database: 'postgres',
-  //     entities: [BlogEntity],
-  //     synchronize: true, // This should be used with caution in production
-  //     autoLoadEntities: true,
-  //   }),
-  //   TypeOrmModule.forFeature([BlogEntity]), // Register your repository here
-  // ],
+  imports: [
+    TypeOrmModule.forRoot({
+      type: 'postgres',
+      host: 'blog-db' || 'localhost',
+      port: 5432,
+      username: 'postgres',
+      password: 'postgres',
+      entities: [BlogEntity],
+      synchronize: true, // This should be used with caution in production
+      autoLoadEntities: true,
+    }),
+    TypeOrmModule.forFeature([BlogEntity]), // Register your repository here
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
