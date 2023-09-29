@@ -20,8 +20,9 @@ export class AppController {
     return this.appService.createPost(data);
   }
 
-  // @MessagePattern({ cmd: 'getBlogById' })
-  // async getBlogById(id: number): Promise<BlogDto> {
-  //   return this.appService.getBlogById(id);
-  // }
+  @MessagePattern({ cmd: 'getPostById' })
+  async getBlogById(@Body() id: number): Promise<BlogDto> {
+    console.log('getPostById message received');
+    return this.appService.getPostById(id);
+  }
 }

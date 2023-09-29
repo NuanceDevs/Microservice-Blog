@@ -24,11 +24,7 @@ export class AppService {
     return this.blogRepository.save(data);
   }
 
-  // async getBlogById(id: number): Promise<BlogDto> {
-  //   return {
-  //     id,
-  //     title: 'Blog 1',
-  //     summary: 'Blog 1 summary',
-  //   };
-  // }
+  async getPostById(id: number): Promise<BlogEntity> {
+    return this.blogRepository.findOne({ where: { id } });
+  }
 }
