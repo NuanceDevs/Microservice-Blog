@@ -20,13 +20,15 @@ export class AppService {
     return await this.blogRepository.find();
   }
 
-  async createPost(): Promise<void> {}
-
-  async getBlogById(id: number): Promise<BlogDto> {
-    return {
-      id,
-      title: 'Blog 1',
-      summary: 'Blog 1 summary',
-    };
+  async createPost(data: BlogDto): Promise<any> {
+    return this.blogRepository.save(data);
   }
+
+  // async getBlogById(id: number): Promise<BlogDto> {
+  //   return {
+  //     id,
+  //     title: 'Blog 1',
+  //     summary: 'Blog 1 summary',
+  //   };
+  // }
 }

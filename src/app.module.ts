@@ -8,10 +8,11 @@ import { AppService } from './app.service';
   imports: [
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: 'blog-db' || 'localhost',
+      host: process.env.POSTGRES_HOST || 'localhost',
       port: 5432,
-      username: 'postgres',
-      password: 'postgres',
+      username: process.env.POSTGRES_USER || 'root',
+      password: process.env.POSTGRES_PASSWORD || 'root',
+      database: process.env.POSTGRES_DB_NAME || 'test',
       entities: [BlogEntity],
       synchronize: true, // This should be used with caution in production
       autoLoadEntities: true,

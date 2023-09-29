@@ -1,5 +1,5 @@
 import { AppService } from './app.service';
-import { Controller } from '@nestjs/common';
+import { Body, Controller } from '@nestjs/common';
 import { MessagePattern } from '@nestjs/microservices';
 import { BlogDto } from './blog/dto/blog.dto';
 
@@ -14,13 +14,14 @@ export class AppController {
   }
 
   @MessagePattern({ cmd: 'createPost' })
-  async createBlog(): Promise<void> {
+  async createBlog(@Body() data: BlogDto): Promise<BlogDto> {
+    console.log(data);
     console.log('createBlog message received');
-    this.appService.createPost();
+    return this.appService.createPost(data);
   }
 
-  @MessagePattern({ cmd: 'getBlogById' })
-  async getBlogById(id: number): Promise<BlogDto> {
-    return this.appService.getBlogById(id);
-  }
+  // @MessagePattern({ cmd: 'getBlogById' })
+  // async getBlogById(id: number): Promise<BlogDto> {
+  //   return this.appService.getBlogById(id);
+  // }
 }
