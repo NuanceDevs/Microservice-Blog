@@ -7,8 +7,7 @@ export class BlogEntity {
   id: number;
   @Column()
   title: string;
-  @Column()
-  summary: string;
+
   @Column()
   content: string;
 }
