@@ -15,7 +15,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      working-directory: ./flask-server
+      working-directory: ./
       run: docker build . --file Dockerfile --tag ricocelsius/nuance-blog-microservice:latest
     - name: Publish
       run: | 
