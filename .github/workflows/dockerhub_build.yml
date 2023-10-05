@@ -19,5 +19,5 @@ jobs:
       run: docker build . --file Dockerfile --tag ricocelsius/nuance-blog-microservice:latest
     - name: Publish
       run: | 
-        docker login -u ricocelsius -p ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+        docker login -u ricocelsius -p ${{ secrets.DOCKER_HUB_TOKEN }}
         docker push ricocelsius/nuance-blog-microservice:latest
