@@ -2,9 +2,9 @@ name: Docker Image CI
 
 on:
   push:
-    branches: ['main']
+    branches: ['main', 'develop']
   pull_request:
-    branches: ['main']
+    branches: ['main', 'develop']
 
 jobs:
   build:
@@ -13,9 +13,9 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Build the Docker image
-        working-directory: ./flask-server
+        working-directory: ./
         run: docker build . --file Dockerfile --tag ricocelsius/nuance-blog-microservice:latest
       - name: Publish
         run: |
-          docker login -u ricocelsius -p ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+          docker login -u ricocelsius -p ${{ secrets.DOCKER_HUB_TOKEN }}
           docker push ricocelsius/nuance-blog-microservice:latest
