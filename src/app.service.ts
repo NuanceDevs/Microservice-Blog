@@ -23,6 +23,9 @@ export class AppService {
   async createPost(data: BlogDto): Promise<any> {
     return this.blogRepository.save(data);
   }
+  async getPostById(id: number): Promise<BlogDto | undefined> {
+    const post = await this.blogRepository.findOne({ where: { id: id } });
+
 
   async getPostById(id: number): Promise<BlogEntity> {
     return this.blogRepository.findOne({ where: { id } });

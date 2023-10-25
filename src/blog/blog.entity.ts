@@ -7,7 +7,8 @@ export class BlogEntity {
   id: number;
   @Column()
   title: string;
-
   @Column()
   content: string;
+  @Column() // Add the "sumary" colum
+  summary: string;
 }
