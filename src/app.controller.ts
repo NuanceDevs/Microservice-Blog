@@ -21,7 +21,8 @@ export class AppController {
   }
 
   @MessagePattern({ cmd: 'getPostById' })
-  async getBlogById(id: number): Promise<BlogDto> {
+  async getBlogById(@Body() id: number): Promise<BlogDto> {
+    console.log('getPostById message received');
     return this.appService.getPostById(id);
   }
 }

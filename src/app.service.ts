@@ -26,10 +26,8 @@ export class AppService {
   async getPostById(id: number): Promise<BlogDto | undefined> {
     const post = await this.blogRepository.findOne({ where: { id: id } });
 
-    if (!post) {
-      throw new Error(`Blog post with ID ${id} not found.`);
-    }
-    // Convert 'post' to 'BlogDto' if needed
-    return post;
+
+  async getPostById(id: number): Promise<BlogEntity> {
+    return this.blogRepository.findOne({ where: { id } });
   }
 }
