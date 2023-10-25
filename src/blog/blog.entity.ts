@@ -9,6 +9,6 @@ export class BlogEntity {
   title: string;
   @Column()
   content: string;
-  @Column()  // Add the "summary" column
+  @Column() // Add the "sumary" colum
   summary: string;
 }
