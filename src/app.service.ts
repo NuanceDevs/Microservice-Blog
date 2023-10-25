@@ -23,12 +23,13 @@ export class AppService {
   async createPost(data: BlogDto): Promise<any> {
     return this.blogRepository.save(data);
   }
+  async getPostById(id: number): Promise<BlogDto | undefined> {
+    const post = await this.blogRepository.findOne({ where: { id: id } });
 
-  // async getBlogById(id: number): Promise<BlogDto> {
-  //   return {
-  //     id,
-  //     title: 'Blog 1',
-  //     summary: 'Blog 1 summary',
-  //   };
-  // }
+    if (!post) {
+      throw new Error(`Blog post with ID ${id} not found.`);
+    }
+    // Convert 'post' to 'BlogDto' if needed
+    return post;
+  }
 }
