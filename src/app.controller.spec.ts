@@ -5,7 +5,6 @@ import { AppService } from './app.service';
 import { BlogEntity } from './blog/blog.entity';
 import { getRepositoryToken } from '@nestjs/typeorm';
 
-
 describe('AppController', () => {
   let appController: AppController;
   let appService: AppService;
