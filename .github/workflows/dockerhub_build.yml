@@ -1,11 +1,11 @@
 name: Docker Image CI
 
 on:
-  push:
+  workflow_run:
     branches: ['main']
-  pull_request:
-    branches: ['main']
-
+    workflows: ["Run tests"]
+    types:
+      - completed
 jobs:
   build:
     runs-on: ubuntu-latest

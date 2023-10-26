@@ -1,5 +1,5 @@
 import { AppService } from './app.service';
-import { Body, Controller } from '@nestjs/common';
+import { Body, Controller, NotFoundException } from '@nestjs/common';
 import { MessagePattern } from '@nestjs/microservices';
 import { BlogDto } from './blog/dto/blog.dto';
 
@@ -21,8 +21,12 @@ export class AppController {
   }
 
   @MessagePattern({ cmd: 'getPostById' })
-  async getBlogById(@Body() id: number): Promise<BlogDto> {
+  async getPostById(@Body() id: number): Promise<BlogDto> {
     console.log('getPostById message received');
-    return this.appService.getPostById(id);
+    const blog = this.appService.getPostById(id);
+    if (!blog) {
+      throw new NotFoundException(`Blog with ID ${id} not found`);
+    }
+    return blog;
   }
 }
