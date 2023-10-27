@@ -4,6 +4,7 @@ import { BlogDto } from './blog/dto/blog.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { BlogEntity } from './blog/blog.entity';
+import { DeletePostDto } from './blog/dto/DeletePostDto';
 
 @Injectable()
 export class AppService {
@@ -26,5 +27,10 @@ export class AppService {
 
   async getPostById(id: number): Promise<BlogEntity> {
     return this.blogRepository.findOne({ where: { id } });
+  }
+
+  async deletePost(data: DeletePostDto) {
+    const id = data.id;
+    return this.blogRepository.delete({ id });
   }
 }
