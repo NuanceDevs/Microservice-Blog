@@ -2,6 +2,7 @@ import { AppService } from './app.service';
 import { Body, Controller, NotFoundException } from '@nestjs/common';
 import { MessagePattern } from '@nestjs/microservices';
 import { BlogDto } from './blog/dto/blog.dto';
+import { DeletePostDto } from './blog/dto/DeletePostDto';
 
 @Controller()
 export class AppController {
@@ -28,5 +29,11 @@ export class AppController {
       throw new NotFoundException(`Blog with ID ${id} not found`);
     }
     return blog;
+  }
+
+  @MessagePattern({ cmd: 'deletePost' })
+  async deletePost(@Body() data: DeletePostDto) {
+    console.log('del post message received');
+    return this.appService.deletePost(data);
   }
 }
