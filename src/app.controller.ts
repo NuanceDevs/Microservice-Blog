@@ -16,6 +16,7 @@ export class AppController {
   @MessagePattern({ cmd: 'createPost' })
   async createBlog(@Body() data: BlogDto): Promise<BlogDto> {
     console.log(data);
+    data.publishedOn = new Date();
     console.log('createBlog message received');
     return this.appService.createPost(data);
   }
