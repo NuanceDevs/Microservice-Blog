@@ -11,4 +11,6 @@ export class BlogEntity {
   content: string;
   @Column() // Add the "sumary" colum
   summary: string;
+  @Column()
+  publishedOn: Date;
 }
