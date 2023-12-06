@@ -7,4 +7,5 @@ export class BlogDto {
   title: string;
   content: string;
   summary: string;
+  imageUrl: string;
 }

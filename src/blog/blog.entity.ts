@@ -13,4 +13,6 @@ export class BlogEntity {
   summary: string;
   @Column()
   publishedOn: Date;
+  @Column()
+  imageUrl: string;
 }

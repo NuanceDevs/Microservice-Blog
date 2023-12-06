@@ -25,7 +25,6 @@ export class AppService {
     return this.blogRepository.save(data);
   }
 
-
   async getPostById(id: number): Promise<BlogEntity> {
     return this.blogRepository.findOne({ where: { id } });
   }
